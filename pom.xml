@@ -6,6 +6,7 @@
 	<modules>
 		<module>order-api</module>
 		<module>price-api</module>
+		<module>server-auth</module>
 	</modules>
 	<groupId>org.liuyuefeng.security</groupId>
 	<artifactId>micro-security</artifactId>
