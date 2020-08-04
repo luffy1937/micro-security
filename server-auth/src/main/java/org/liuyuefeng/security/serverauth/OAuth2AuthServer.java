@@ -23,6 +23,22 @@ public class OAuth2AuthServer extends AuthorizationServerConfigurerAdapter {
         endpoints.authenticationManager(authenticationManager);
     }
 
+
+/*
+客户端获取token
+其中 basic是 username:orderApp password:123456
+form中username/password代表用户
+curl --location --request POST 'http://localhost:9090/oauth/token' \
+            --header 'Authorization: Basic b3JkZXJBcHA6MTIzNDU2' \
+            --form 'username=liuyuefeng' \
+            --form 'password=123456' \
+            --form 'grant_type=password' \
+            --form 'scope=write read'
+
+
+sourceServer验证token接口是 /oauth/check_token
+ */
+
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
