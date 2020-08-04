@@ -1,4 +1,4 @@
-package org.liuyuefeng.security.serverauth;
+package org.liuyuefeng.security.servergateway;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

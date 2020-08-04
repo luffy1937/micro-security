@@ -1,4 +1,4 @@
-package org.liuyuefeng.security.serverauth;
+package org.liuyuefeng.security.servergateway;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

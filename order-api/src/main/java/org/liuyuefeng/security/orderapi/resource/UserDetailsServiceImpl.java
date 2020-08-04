@@ -1,3 +1,4 @@
+/*
 package org.liuyuefeng.security.orderapi.resource;
 
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,3 +16,4 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return user;
     }
 }
+*/

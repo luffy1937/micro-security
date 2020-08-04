@@ -1,3 +1,4 @@
+/*
 package org.liuyuefeng.security.orderapi.resource;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -63,3 +64,4 @@ public class User implements UserDetails {
         return true;
     }
 }
+*/

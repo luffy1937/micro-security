@@ -1,0 +1,10 @@
+zuul:
+  routes:
+    token:
+      url: http://localhost:9090
+    order:
+      url: http://localhost:9060
+  #敏感头，不转发
+  sensitive-headers: #设置为空，所有都转发
+server:
+  port: 9070

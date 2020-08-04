@@ -1,4 +1,4 @@
-package org.liuyuefeng.security.serverauth;
+package org.liuyuefeng.security.servergateway;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

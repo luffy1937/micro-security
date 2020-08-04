@@ -1,3 +1,4 @@
+/*
 package org.liuyuefeng.security.orderapi.resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,3 +43,4 @@ public class OAuth2WebSecurityConfig extends WebSecurityConfigurerAdapter{
     }
 
 }
+*/

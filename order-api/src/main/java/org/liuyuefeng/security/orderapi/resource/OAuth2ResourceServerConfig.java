@@ -1,3 +1,4 @@
+/*
 package org.liuyuefeng.security.orderapi.resource;
 
 import org.springframework.context.annotation.Configuration;
@@ -24,3 +25,4 @@ public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter{
                 .access("#oauth2.hasScope('read')");
     }
 }
+*/
