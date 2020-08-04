@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: auth-server
+  datasource:
+    url: jdbc:mysql://10.124.152.154:6868/security?characterEncoding=utf8
+    username: root
+    password: 1q2w3e4r
+    driver-class-name: com.mysql.cj.jdbc.Driver
