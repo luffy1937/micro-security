@@ -4,7 +4,29 @@ zuul:
       url: http://localhost:9090
     order:
       url: http://localhost:9060
-  #敏感头，不转发
-  sensitive-headers: #设置为空，所有都转发
+  #敏感头，不转发 ;设置为空，所有都转发
+  sensitive-headers:
+  ratelimit:
+    enabled: true
+    repository: jpa
+    default-policy-list:
+      - limit: 2
+        quota: 1
+        refresh-interval: 1
+        type:
+          - url
+          - httpmethod
+
 server:
   port: 9070
+spring:
+  application:
+    name: server-gateway
+  datasource:
+    url: jdbc:mysql://10.124.152.154:6868/security?characterEncoding=utf8
+    username: root
+    password: 1q2w3e4r
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    generate-ddl: true
+    show-sql: true
