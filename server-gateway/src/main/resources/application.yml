@@ -10,12 +10,23 @@ zuul:
     enabled: true
     repository: jpa
     default-policy-list:
+    - limit: 1
+      quota: 1
+      refresh-interval: 3
+      type:
+        - url
+        - httpmethod
+    policy-list:
+      token:
       - limit: 2
         quota: 1
         refresh-interval: 1
-        type:
-          - url
-          - httpmethod
+        type: #组合
+          - url #url
+          - httpmethod #http动词
+          - user #用户
+          - origin #
+
 
 server:
   port: 9070

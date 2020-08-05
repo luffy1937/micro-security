@@ -52,7 +52,7 @@ public class AuthorizationFilter extends ZuulFilter {
     }
 
     private boolean hasPermission(TokenInfo tokenInfo, HttpServletRequest request) {
-        return RandomUtils.nextInt()%2 == 0;
+        return true;//RandomUtils.nextInt()%2 == 0;
     }
 
     private void handleError(int status, RequestContext requestContext) {
