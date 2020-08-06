@@ -1,0 +1,8 @@
+zuul:
+  routes:
+    api:
+      url: http://gateway.security.liuyuefeng.org:9070
+  sensitive-headers:
+spring:
+  application:
+    name: admin

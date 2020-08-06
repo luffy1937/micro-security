@@ -10,14 +10,34 @@ export class AppComponent {
   title = 'angula';
   authenticated=false;
   credentials = {username: "liuyuefeng", password: "123"}
+  order = {};
   constructor(private http: HttpClient){
 
   }
+
+  getOrder(){
+    this.http.get("api/order/orders/1").subscribe(
+      data => {
+        this.order = data;
+      },
+      () => {
+        alert('get order fail');
+      }
+    );
+  }
+
   login(){
     this.http.post("login", this.credentials).subscribe(()=>{
       this.authenticated = true;
     }, () =>{
       alert('login fail');
     });
+  }
+
+  logOut() {
+    this.http.post('logout', this.credentials).subscribe(
+      () => {this.authenticated = false;}
+      ,() => {alert('logout fail');}
+    );
   }
 }

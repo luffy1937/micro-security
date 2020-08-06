@@ -2,6 +2,7 @@ package org.liuyuefeng.security.orderapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.http.*;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @SpringBootApplication
 @RestController
+@EnableZuulProxy
 //./ng build --watch 动态更新angular
 public class AdminiApplication {
   private RestTemplate restTemplate = new RestTemplate();
@@ -33,6 +35,10 @@ public class AdminiApplication {
     ResponseEntity<TokenInfo> response = restTemplate.exchange(oauthServiceUrl, HttpMethod.POST, entity, TokenInfo.class);
     request.getSession().setAttribute("token", response.getBody());
 
+  }
+  @PostMapping("/logout")
+  public void logout(HttpServletRequest request){
+    request.getSession().invalidate();
   }
 
 	public static void main(String[] args) {
