@@ -2,8 +2,10 @@ package org.liuyuefeng.security.servergateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.session.jdbc.config.annotation.web.http.EnableJdbcHttpSession;
 
 @SpringBootApplication
+@EnableJdbcHttpSession
 public class ServerAuthApplication {
 
     public static void main(String[] args) {
