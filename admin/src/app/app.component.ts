@@ -12,6 +12,26 @@ export class AppComponent {
   credentials = {username: "liuyuefeng", password: "123"}
   order = {};
   constructor(private http: HttpClient){
+    this.http.get('me').subscribe(
+      data => {
+        if(data){
+          this.authenticated = true;
+        }
+        if(!this.authenticated){
+          window.location.href =
+            //认证服务器
+            'http://auth.security.liuyuefeng.org:9090/oauth/authorize?'+
+            //授权码认证
+            'response_type=code&' +
+            //客户端clientId
+            'client_id=admin&' +
+            //客户端服务9001
+            'redirect_uri=http://admin.security.liuyuefeng.org:9001/oauth/callback&' +
+            //记录授权前位置，授权完成后，据此回到
+            'state=abc'
+        }
+      }
+    );
 
   }
 
