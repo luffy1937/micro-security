@@ -62,7 +62,7 @@ public class AdminiApplication {
     params.add("redirect_uri", "http://admin.security.liuyuefeng.org:9001/oauth/callback");
     HttpEntity<MultiValueMap<String, String>> entity = new HttpEntity<>(params, headers);
     ResponseEntity<TokenInfo> token = restTemplate.exchange(oauthServiceUrl, HttpMethod.POST, entity, TokenInfo.class);
-    request.getSession().setAttribute("token", token.getBody());
+    request.getSession().setAttribute("token", token.getBody().init());
     //跳回主页
     response.sendRedirect("/");
   }
