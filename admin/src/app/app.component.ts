@@ -56,7 +56,12 @@ export class AppComponent {
 
   logOut() {
     this.http.post('logout', this.credentials).subscribe(
-      () => {this.authenticated = false;}
+      () => {
+       /* this.authenticated = false;*/
+       //退出时，也在认证服务器登出
+        window.location.href="http://auth.security.liuyuefeng.org:9090/logout"
+
+      }
       ,() => {alert('logout fail');}
     );
   }
