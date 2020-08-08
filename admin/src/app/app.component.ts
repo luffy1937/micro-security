@@ -59,7 +59,8 @@ export class AppComponent {
       () => {
        /* this.authenticated = false;*/
        //退出时，也在认证服务器登出
-        window.location.href="http://auth.security.liuyuefeng.org:9090/logout"
+        //退出后跳转到amin
+        window.location.href="http://auth.security.liuyuefeng.org:9090/logout?redirect_uri=http://admin.security.liuyuefeng.org:9001"
 
       }
       ,() => {alert('logout fail');}
