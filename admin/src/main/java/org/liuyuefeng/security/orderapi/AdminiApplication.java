@@ -11,6 +11,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -62,7 +63,22 @@ public class AdminiApplication {
     params.add("redirect_uri", "http://admin.security.liuyuefeng.org:9001/oauth/callback");
     HttpEntity<MultiValueMap<String, String>> entity = new HttpEntity<>(params, headers);
     ResponseEntity<TokenInfo> token = restTemplate.exchange(oauthServiceUrl, HttpMethod.POST, entity, TokenInfo.class);
-    request.getSession().setAttribute("token", token.getBody().init());
+   // request.getSession().setAttribute("token", token.getBody().init());
+    /**
+     * token sso
+     */
+    Cookie accessTokenCookie = new Cookie("liuyuefeng_access_token", token.getBody().getAccess_token());
+    accessTokenCookie.setMaxAge(token.getBody().getExpires_in().intValue());
+    accessTokenCookie.setDomain("security.liuyuefeng.org");
+    accessTokenCookie.setPath("/");
+    response.addCookie(accessTokenCookie);
+
+    Cookie refreshTokenCookie = new Cookie("liuyuefeng_refresh_token", token.getBody().getAccess_token());
+    //过期时间设置一个较大的值即可
+    accessTokenCookie.setMaxAge(259000);
+    accessTokenCookie.setDomain("security.liuyuefeng.org");
+    accessTokenCookie.setPath("/");
+    response.addCookie(refreshTokenCookie);
     //跳回主页
     response.sendRedirect("/");
   }

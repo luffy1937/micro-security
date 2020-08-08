@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-root',
@@ -11,8 +12,8 @@ export class AppComponent {
   authenticated=false;
   credentials = {username: "liuyuefeng", password: "123"}
   order = {};
-  constructor(private http: HttpClient){
-    this.http.get('me').subscribe(
+  constructor(private http: HttpClient, private cookieService: CookieService){
+    this.http.get('api/user/me').subscribe(
       data => {
         if(data){
           this.authenticated = true;
@@ -55,6 +56,8 @@ export class AppComponent {
   }
 
   logOut() {
+    this.cookieService.delete("liuyuefeng_access_toekn", "/", "security.liuyuefeng.org");
+    this.cookieService.delete("liuyuefeng_refresh_token", "/", "security.liuyuefeng.org");
     this.http.post('logout', this.credentials).subscribe(
       () => {
        /* this.authenticated = false;*/

@@ -1,5 +1,7 @@
 zuul:
   routes:
+    user:
+      url: http://nouse
     token:
       url: http://localhost:9090
     order:
