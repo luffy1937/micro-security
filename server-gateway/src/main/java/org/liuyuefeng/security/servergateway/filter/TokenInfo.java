@@ -1,3 +1,4 @@
+/*
 package org.liuyuefeng.security.servergateway.filter;
 
 import lombok.Data;
@@ -13,8 +14,11 @@ public class TokenInfo {
     private Date exp;
     private String[] authorities;
 
+*/
 /*    public boolean isActive(){
         return active;
-    }*/
+    }*//*
+
 
 }
+*/

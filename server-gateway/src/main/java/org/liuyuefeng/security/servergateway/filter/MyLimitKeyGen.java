@@ -1,3 +1,4 @@
+/*
 package org.liuyuefeng.security.servergateway.filter;
 
 import com.marcosbarbero.cloud.autoconfigure.zuul.ratelimit.config.RateLimitUtils;
@@ -17,3 +18,4 @@ public class MyLimitKeyGen extends DefaultRateLimitKeyGenerator {
         return super.key(request, route, policy);
     }
 }
+*/

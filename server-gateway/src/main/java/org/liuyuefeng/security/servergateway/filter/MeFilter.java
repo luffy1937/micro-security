@@ -1,3 +1,4 @@
+/*
 package org.liuyuefeng.security.servergateway.filter;
 
 import com.netflix.zuul.ZuulFilter;
@@ -41,3 +42,4 @@ public class MeFilter extends ZuulFilter {
         return null;
     }
 }
+*/

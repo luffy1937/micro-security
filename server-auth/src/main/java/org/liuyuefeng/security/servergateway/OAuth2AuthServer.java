@@ -37,7 +37,7 @@ public class OAuth2AuthServer extends AuthorizationServerConfigurerAdapter {
         //return new JdbcTokenStore(dataSource);
         return new JwtTokenStore(jwtTokenEnhancer());
     }
-
+    @Bean
     private JwtAccessTokenConverter jwtTokenEnhancer() {
         JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
         //jwtAccessTokenConverter.setSigningKey("123456");
