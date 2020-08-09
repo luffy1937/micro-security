@@ -3,6 +3,7 @@ package org.liuyuefeng.security.servergateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,6 +17,7 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
+import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
 
 import javax.sql.DataSource;
 
@@ -38,7 +40,9 @@ public class OAuth2AuthServer extends AuthorizationServerConfigurerAdapter {
 
     private JwtAccessTokenConverter jwtTokenEnhancer() {
         JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
-        jwtAccessTokenConverter.setSigningKey("123456");
+        //jwtAccessTokenConverter.setSigningKey("123456");
+        KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("liu.key"), "123456".toCharArray());
+        jwtAccessTokenConverter.setKeyPair(keyStoreKeyFactory.getKeyPair("liu"));
         return jwtAccessTokenConverter;
     }
 
