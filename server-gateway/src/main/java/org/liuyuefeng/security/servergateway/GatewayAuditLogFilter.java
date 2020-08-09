@@ -1,4 +1,4 @@
-package org.liuyuefeng.security.servergateway.filter;
+package org.liuyuefeng.security.servergateway;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;

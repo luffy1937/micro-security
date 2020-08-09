@@ -1,7 +1,5 @@
 package org.liuyuefeng.security.servergateway;
 
-import org.apache.commons.lang.builder.ReflectionToStringBuilder;
-import org.liuyuefeng.security.servergateway.filter.GatewayAuditLogFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -9,6 +7,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.web.access.ExceptionTranslationFilter;
+import org.springframework.security.web.context.SecurityContextPersistenceFilter;
 
 @Configuration
 @EnableResourceServer
@@ -29,7 +28,7 @@ public class GatewaySecurityConfig extends ResourceServerConfigurerAdapter{
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http
+        http    .addFilterBefore(new GatewayRateLimiterFilter(), SecurityContextPersistenceFilter.class)
                 .addFilterBefore(new GatewayAuditLogFilter(), ExceptionTranslationFilter.class)
                 .authorizeRequests()
                 .antMatchers("/token/**").permitAll()
