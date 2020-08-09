@@ -14,6 +14,8 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 import javax.sql.DataSource;
 
@@ -30,13 +32,22 @@ public class OAuth2AuthServer extends AuthorizationServerConfigurerAdapter {
     private UserDetailsService userDetailService;
     @Bean
     public TokenStore tokenStore(){
-        return new JdbcTokenStore(dataSource);
+        //return new JdbcTokenStore(dataSource);
+        return new JwtTokenStore(jwtTokenEnhancer());
     }
+
+    private JwtAccessTokenConverter jwtTokenEnhancer() {
+        JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
+        jwtAccessTokenConverter.setSigningKey("123456");
+        return jwtAccessTokenConverter;
+    }
+
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints
                 .userDetailsService(userDetailService)
                 .tokenStore(tokenStore())
+                .tokenEnhancer(jwtTokenEnhancer())
                 .authenticationManager(authenticationManager);
     }
 
@@ -81,6 +92,8 @@ public static void main(String[] args) {
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-        security.checkTokenAccess("isAuthenticated()");
+        security
+                .tokenKeyAccess("isAuthenticated()")
+                .checkTokenAccess("isAuthenticated()");
     }
 }
