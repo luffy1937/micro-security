@@ -2,7 +2,7 @@ package org.liuyuefeng.security.priceapi.price;
 
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
+//import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
 
@@ -11,8 +11,10 @@ import java.math.BigDecimal;
 @Slf4j
 public class PriceController {
     @GetMapping("/{id}")
-    public PriceInfo create(@PathVariable Long id, @AuthenticationPrincipal String username){
-        log.info("user is " + username);
+    public PriceInfo create(@PathVariable Long id
+            //, @AuthenticationPrincipal String username
+    ){
+       // log.info("user is " + username);
         log.info("productId is " + id);
         PriceInfo info = new PriceInfo();
         info.setId(id);
