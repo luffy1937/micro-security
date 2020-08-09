@@ -1,0 +1,8 @@
+security:
+  oauth2:
+    resource:
+      jwt:
+        key-uri: http://auth.security.liuyuefeng.org:9090/oauth/token_key
+    client:
+      client-id: orderService
+      client-secret: 123456

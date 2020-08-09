@@ -3,6 +3,7 @@ package org.liuyuefeng.security.orderapi.order;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ public class OrderController {
     @Autowired//可以拿到令牌，并放到header里
     private OAuth2RestTemplate restTemplate;
     @PostMapping
+    @PreAuthorize("#oauth2.hasScope('fly')")//scope是按照客户端，按照用户可以用oauth2.hasRole('ROLE_ADMIN')
     public OrderInfo create(@RequestBody OrderInfo info, @AuthenticationPrincipal String username){//@AuthenticationPrincpal(expression = "#this.id") Long id
         log.info("user is " + username);
         PriceInfo price = restTemplate.getForObject("http://localhost:9080/prices/" + info.getProductId(), PriceInfo.class);
