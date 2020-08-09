@@ -15,10 +15,16 @@ import org.springframework.security.web.access.ExceptionTranslationFilter;
 public class GatewaySecurityConfig extends ResourceServerConfigurerAdapter{
     @Autowired
     GatewayWebSecurityExpressionHandler gatewayWebSecurityExpressionHandler;
-
+    @Autowired
+    private GatewayAccessDeniedHandler gatewayAccessDeniedHandler;
+    @Autowired
+    GatewayAuthenticationEntryPoint gatewayAuthenticationEntryPoint;
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-        resources.expressionHandler(gatewayWebSecurityExpressionHandler);
+        resources
+                .authenticationEntryPoint(gatewayAuthenticationEntryPoint)//401
+                .accessDeniedHandler(gatewayAccessDeniedHandler)//403
+                .expressionHandler(gatewayWebSecurityExpressionHandler);
     }
 
     @Override

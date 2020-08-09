@@ -15,6 +15,8 @@ public class GatewayAuditLogFilter extends OncePerRequestFilter {
         String user = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         System.out.println("1. add log for " + user);
         filterChain.doFilter(httpServletRequest, httpServletResponse);
-        System.out.println("3. update log to success    ");
+        if(!true == (boolean)httpServletRequest.getAttribute("logUpdated")){
+            System.out.println("3. update log to success    ");
+        }
     }
 }
