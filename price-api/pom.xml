@@ -40,6 +40,12 @@
             <artifactId>sentinel-core</artifactId>
             <version>1.6.3</version>
         </dependency>
+        <!--环境变量 -Dcsp.sentinel.dashboard.server=localhost:8080 设置sentinel-dashboard-server地址-->
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-transport-simple-http</artifactId>
+            <version>1.6.3</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
